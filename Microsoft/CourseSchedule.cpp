@@ -1,4 +1,4 @@
-// Problem 5: Course Schedule
+// Problem 7: Course Schedule
 // https://leetcode.com/problems/course-schedule/
 class Solution {
 public:
