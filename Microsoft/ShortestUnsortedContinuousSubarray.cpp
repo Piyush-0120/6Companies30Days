@@ -5,22 +5,36 @@
 */
 class Solution {
 public:
-    // T.C -> O(nlogn)
-    int findUnsortedSubarray(vector<int>& nums) {
-        vector<int>a=nums;
-        // sorting the copied array 
-        sort(a.begin(),a.end());
-        int s=INT_MAX,e=INT_MIN;
+    // T.C -> O(n) approach
+    // in a sorted array-> a0 <= a1 <= a2 .. <= an 
+    // making use of the above property to check which numbers are not in their position
+    // the max till now is checked with other numbers while going from left to right
+    // the min till now is checked with other numbers while going from right to left
+    int findUnsortedSubarray(vector<int>& a) {
         int n=a.size();
-        for(int i=0;i<n;i++){
-            if(nums[i]!=a[i]){
-                s=min(s,i); // first element not equal starts the subarray
-                e=max(e,i); // last element not equal will be end of the subarray
+        int ma=a[0];
+        int s=INT_MAX,e=INT_MIN;
+        for(int i=1;i<n;i++){
+            if(ma>a[i]){
+                s=min(s,i);
+                e=max(e,i);
+            }
+            else{
+                ma=max(ma,a[i]);
             }
         }
-        if(s!=INT_MAX && e!=INT_MIN){
-            return e-s+1;
+        int mi=a[n-1];
+        for(int i=n-2;i>=0;i--){
+            if(mi<a[i]){
+                s=min(s,i);
+                e=max(e,i);
+            }
+            else{
+                mi=min(mi,a[i]);
+            }
         }
+        if(s!=INT_MAX && e!=INT_MIN)
+            return e-s+1;
         return 0;
     }
 };
