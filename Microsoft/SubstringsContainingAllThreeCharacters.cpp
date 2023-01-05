@@ -22,8 +22,7 @@ public:
                 
             }
             if(m[0]>=1 && m[1]>=1 && m[2]>=1){
-                // cout << n-(right-1)<<"\n";
-                ans+=n-(right-1); // this range along with the elements in the right also are valid substrings
+                ans+=n-(right-1); // this range along with the elements in the right are also valid substrings
             }
             
             m[s[left]-'a']--;
