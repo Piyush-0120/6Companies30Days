@@ -1,0 +1,61 @@
+/*
+
+Problem 1: Max Points on a Line
+https://leetcode.com/problems/max-points-on-a-line/
+O(n^3) solution -> using two points to find equation of line and then substituting value of x to get y coordinate
+
+*/
+
+
+class Solution {
+public:
+    bool compare_float(double x, double y, double epsilon = 0.0000001f){
+       if(fabs(x - y) < epsilon)
+          return true; //they are same
+      return false; //they are not same
+    }
+    
+    int maxPoints(vector<vector<int>>& a) {
+    
+        // y- y1 = y2-y1/(x2-x1) (x-x1)
+        int n=a.size();
+        int ans=1;
+        for(int i=0;i<n;i++){
+            int x1 = a[i][0],y1=a[i][1];
+            for(int j=i+1;j<n;j++){
+                int x2 = a[j][0],y2=a[j][1]; 
+                if(x1==x2){
+                    int c=2;
+                    for(int k=j+1;k<n;k++){
+                        int x = a[k][0];
+                        int y = a[k][1];
+                        if(x==x1)
+                            c++;
+                    }
+                    
+                    ans=max(ans,c);
+                }
+                else{
+                    double m=((y2-y1)*1.0)/(x2-x1);
+                    int c=2;
+                    for(int k=j+1;k<n;k++){
+                        int x = a[k][0];
+                        int y = a[k][1];
+
+                        double y_ = m*1.0 * (x-x1) + y1;
+                        if(compare_float(y_,y*1.0)){
+                            c++;
+                            
+                        }
+                        else{
+                        }
+                    }
+                    ans=max(ans,c);
+                }
+                
+            }
+        }
+        return ans;      
+    }
+    
+};
