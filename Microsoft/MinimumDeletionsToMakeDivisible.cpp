@@ -1,6 +1,6 @@
 /*
 
-Problem 15: Minimum Deletions to Make Array Divisible
+Problem 14: Minimum Deletions to Make Array Divisible
 https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/
 
 */
