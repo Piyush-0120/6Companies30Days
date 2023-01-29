@@ -1,24 +1,26 @@
 /*
 https://leetcode.com/problems/shuffle-an-array/
-TC-> O(n^2) [random shuffle works in O(n)]
-
+TC-> O(n) Fisher–Yates Algorithm
+SC-> O(1)
 */
 class Solution {
 public:
-    vector<int>original,arr;
+    vector<int>original;
     
     Solution(vector<int>& nums) {
         original=nums;
-        arr=nums;
     }
     
     vector<int> reset() {
-        arr=original;
-        return arr;
+        return original;
     }
     
     vector<int> shuffle() {
-        random_shuffle(arr.begin(), arr.end());
+        vector<int>arr=original;
+        for(int i=arr.size()-1;i>=0;i--){
+            int j=rand()%(i+1);
+            swap(arr[i],arr[j]);
+        }
         return arr;
     }
 };
